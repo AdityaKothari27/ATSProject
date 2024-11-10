@@ -10,6 +10,9 @@ from statsmodels.tsa.arima.model import ARIMA
 from pmdarima import auto_arima
 import io
 import statsmodels.api as sm  
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 
 
 st.set_page_config(page_title="Retail Sales Forecasting", layout="wide", initial_sidebar_state="expanded")
@@ -42,14 +45,14 @@ st.markdown("""
 st.title("🚀 Retail Sales Forecasting")
 
 #1. Data Collection
-st.header("📁 Data Upload")
+st.header("📁 Data Upload (Make sure that the csv file contains only 2 columns i.e. 'Date' and 'Sales')")
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
     data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m')
     data.set_index('Date', inplace=True)
-    data = data.asfreq('MS')  # Set the frequency to month start
+    data = data.asfreq('MS')  #Setting the frequency to month start
 
     #2. Exploratory Data Analysis
     st.header("📊 Exploratory Data Analysis")
