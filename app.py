@@ -219,9 +219,7 @@ if uploaded_file is not None:
 
     # Display model summary
     with st.expander("Model Summary"):
-        buf = io.StringIO()
-        results.summary().tables[1].to_csv(buf)
-        st.write(buf.getvalue())
+        st.write(results.summary().tables[1].as_html(), unsafe_allow_html=True)
 
     #Generating future dates
     future_dates = pd.date_range(start=data.index[-1] + pd.offsets.MonthBegin(1), periods=n_periods, freq='MS')

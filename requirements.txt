@@ -5,3 +5,5 @@ pmdarima
 seaborn
 statsmodels
 streamlit
+scikit-learn
+
