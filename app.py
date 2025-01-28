@@ -50,7 +50,7 @@ uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
-    data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
+    data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m')
     data.set_index('Date', inplace=True)
     data = data.asfreq('MS')  #Setting the frequency to month start
 
